@@ -13,6 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Elements */
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -28,50 +30,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.direction-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-}
-
-.sub-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.square {
-  aspect-ratio: 1;
-}
-
-.controls {
-  justify-content: space-between;
-}
-
-.flex {
-  display: flex;
-}
-
-.frame {
-  border-width: 1px;
-  border-color: white;
-  border-style: dashed;
-
-  min-height: 300px;
-  min-width: 500px;
 }
 
 button {
@@ -91,6 +49,59 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Component Classes */
+
+#app {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.controls {
+  justify-content: space-between;
+}
+
+.direction-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.frame {
+  border-width: 1px;
+  border-color: white;
+  border-style: dashed;
+
+  min-height: 300px;
+  min-width: 500px;
+}
+
+.main-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.side-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Utility Classes */
+
+.flex {
+  display: flex;
+}
+
+.square {
+  aspect-ratio: 1;
 }
 
 @media (prefers-color-scheme: light) {
