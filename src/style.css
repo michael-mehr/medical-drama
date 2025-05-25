@@ -42,8 +42,15 @@ h1 {
   text-align: center;
 }
 
+.direction-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
 .sub-buttons {
   display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .square {
@@ -51,7 +58,7 @@ h1 {
 }
 
 .controls {
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .flex {
