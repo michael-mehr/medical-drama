@@ -51,6 +51,28 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Component IDs */
+
+#up-button {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#left-button {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#right-button {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#down-button {
+  grid-column: 2;
+  grid-row: 3;
+}
+
 /* Component Classes */
 
 #app {
@@ -65,8 +87,9 @@ button:focus-visible {
 
 .direction-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
 }
 
 .frame {
