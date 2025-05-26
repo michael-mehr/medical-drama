@@ -12,3 +12,10 @@
 
 - [ ] Arrow SVGs
 - [ ] Adjust sizing and padding
+
+### Miscellaneous
+
+- [ ] Import assets
+- [ ] Reorganize project tree
+- [ ] look into live updating / web sockets?
+- [ ] remote hosting
