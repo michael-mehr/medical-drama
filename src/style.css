@@ -1,11 +1,19 @@
+/* ================= */
+/*     style.css     */
+/* ================= */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
+  --primary-color: hsl(263, 6%, 75%);
+  --secondary-color: hsl(195, 46%, 28%);
+  --background-color: hsl(300, 20%, 98%);
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,7 +21,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ~~~~~~~~ */
 /* Elements */
+/* ~~~~~~~~ */
 
 a {
   font-weight: 500;
@@ -33,13 +43,16 @@ body {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  /* border-radius: 8px; */
+  /* border: 1px solid transparent; */
+  /* padding: 0.6em 1.2em; */
+  min-width: 3rem;
+  min-height: 3rem;
+
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--primary-color);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -51,7 +64,9 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Component IDs */
+/* ~~~~~~~~~~ */
+/* Components */
+/* ~~~~~~~~~~ */
 
 #up-button {
   grid-column: 2;
@@ -90,30 +105,51 @@ button:focus-visible {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 5px;
+
+  background-color: var(--primary-color);
+}
+
+.direction-buttons > button {
+  background-color: var(--secondary-color);
+  max-width: 5rem;
+  aspect-ratio: 1;
 }
 
 .frame {
   border-width: 1px;
-  border-color: white;
+  border-color: black;
   border-style: dashed;
 
+  background-color: var(--primary-color);
+
   min-height: 300px;
-  min-width: 500px;
+  min-width: 700px;
 }
 
 .main-buttons {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-buttons > button {
+  min-width: 16rem;
 }
 
 .sub-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 5px;
 }
 
 .side-buttons {
   display: flex;
   flex-direction: column;
+  padding-right: 1rem;
+}
+
+.top-section {
+  padding-bottom: 1rem;
 }
 
 
@@ -127,7 +163,11 @@ button:focus-visible {
   aspect-ratio: 1;
 }
 
-@media (prefers-color-scheme: light) {
+/* ~~~~~~~~~~~~~ */
+/* Media Queries */
+/* ~~~~~~~~~~~~~ */
+
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -138,4 +178,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
