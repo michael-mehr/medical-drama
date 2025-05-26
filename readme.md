@@ -4,7 +4,7 @@
 
 ### Functionality
 
-- [ ] Button Selectors
+- [X] Button Selectors
 - [ ] Event handlers for buttons
 - [ ] Swapping assets
 
