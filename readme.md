@@ -5,7 +5,7 @@
 ### Functionality
 
 - [X] Button Selectors
-- [ ] Event handlers for buttons
+- [X] Event handlers for buttons
 - [ ] Swapping assets
 
 ### Styling
@@ -15,8 +15,8 @@
 
 ### Miscellaneous
 
-- [ ] Import assets
-- [ ] Reorganize project tree
-- [ ] vite config
+- [X] Import assets
+- [X] Reorganize project tree
+- [X] vite config
 - [ ] look into live updating / web sockets?
 - [ ] remote hosting
