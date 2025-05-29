@@ -35,6 +35,9 @@ function handleSubButton(e) {
     case "D":
       changeGif("/mozie/mozie_talk_2.gif");
       break;
+    case "E":
+      changeGif("/forrest_mouth.jpg");
+      break;
   }
 }
 

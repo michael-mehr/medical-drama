@@ -152,6 +152,10 @@ button:focus-visible {
   padding-right: 1rem;
 }
 
+.side-buttons > button {
+  margin-bottom: .5rem;
+}
+
 .top-section {
   padding-bottom: 1rem;
 }

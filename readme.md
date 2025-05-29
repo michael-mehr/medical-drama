@@ -6,7 +6,7 @@
 
 - [X] Button Selectors
 - [X] Event handlers for buttons
-- [ ] Swapping assets
+- [X] Swapping assets
 
 ### Styling
 
