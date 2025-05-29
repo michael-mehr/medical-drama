@@ -87,6 +87,10 @@ button:focus-visible {
   grid-row: 3;
 }
 
+#mozie-gif {
+  height: 300px
+}
+
 /* Component Classes */
 
 #app {

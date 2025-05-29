@@ -4,6 +4,11 @@ const mainButtons = document.querySelectorAll("div.main-buttons > button");
 const directionButtons = document.querySelectorAll("div.direction-buttons > button");
 
 const mainFrame = document.querySelector("div.frame");
+const currentGif = document.getElementById("mozie-gif")
+
+function changeGif(path) {
+  currentGif.src = path
+}
 
 function handleMainButton(e) {
   console.log(e.currentTarget.textContent);
@@ -14,7 +19,23 @@ function handleDirectionButton(e) {
 }
 
 function handleSubButton(e) {
+  const target = e.currentTarget;
   console.log(e.currentTarget.textContent);
+
+  switch (target.textContent) {
+    case "A":
+      changeGif("/mozie/mozie_idle_1.gif");
+      break;
+    case "B":
+      changeGif("/mozie/mozie_talk_1.gif");
+      break;
+    case "C":
+      changeGif("/mozie/mozie_idle_2.gif");
+      break;
+    case "D":
+      changeGif("/mozie/mozie_talk_2.gif");
+      break;
+  }
 }
 
 function handleSideButton(e) {
