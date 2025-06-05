@@ -5,7 +5,8 @@
 ### Functionality
 
 - [ ] Direction buttons change position
-- [ ] Myers assets
+- [ ] Implement a state object handle multiple variables
+- [ ] Rewrite `handleSubButton` to be character-agnostic, and easily expanded
 - [ ] Character change
 
 ### Miscellaneous

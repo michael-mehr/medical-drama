@@ -12,8 +12,8 @@ const currentGif = document.getElementById("mozie-gif");
 
 let currentState = {
   "talking": false,
-  "pose": 1,
-  "character": "Mozie",
+  "pose": "A",
+  "character": "mozie",
   "position": "center"
 }
 
