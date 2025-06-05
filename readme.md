@@ -18,5 +18,5 @@
 - [X] Import assets
 - [X] Reorganize project tree
 - [X] vite config
-- [ ] look into live updating / web sockets?
+- [X] look into live updating / web sockets?
 - [ ] remote hosting

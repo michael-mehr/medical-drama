@@ -1,10 +1,21 @@
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:3000");
+
 const sideButtons = document.querySelectorAll("div.side-buttons > button");
 const subButtons = document.querySelectorAll("div.sub-buttons > button");
 const mainButtons = document.querySelectorAll("div.main-buttons > button");
 const directionButtons = document.querySelectorAll("div.direction-buttons > button");
 
 const mainFrame = document.querySelector("div.frame");
-const currentGif = document.getElementById("mozie-gif")
+const currentGif = document.getElementById("mozie-gif");
+
+let currentState = {
+  "talking": false,
+  "pose": 1,
+  "character": "Mozie",
+  "position": "center"
+}
 
 function changeGif(path) {
   currentGif.src = path
@@ -39,6 +50,7 @@ function handleSubButton(e) {
       changeGif("/forrest_mouth.jpg");
       break;
   }
+  socket.emit("update-gif", currentGif.src);
 }
 
 function handleSideButton(e) {
@@ -60,4 +72,18 @@ for (const button of subButtons) {
 for (const button of sideButtons) {
   button.addEventListener("click", handleSideButton)
 }
+
+// WebSocket
+
+socket.on("connect", () => {
+  console.log("Connected to server");
+});
+
+socket.on("connect_error", (err) => {
+  console.error("Connection failed:", err);
+});
+
+socket.on("update-gif", (gifPath) => {
+  changeGif(gifPath);
+});
 
