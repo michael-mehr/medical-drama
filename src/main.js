@@ -1,28 +1,48 @@
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3000");
+const socket = io("https://socket.minecraft.lgbt");
 
 const sideButtons = document.querySelectorAll("div.side-buttons > button");
 const subButtons = document.querySelectorAll("div.sub-buttons > button");
 const mainButtons = document.querySelectorAll("div.main-buttons > button");
 const directionButtons = document.querySelectorAll("div.direction-buttons > button");
 
-const mainFrame = document.querySelector("div.frame");
+const frame = document.querySelector("div.frame");
 const currentGif = document.getElementById("mozie-gif");
 
 let currentState = {
   "talking": false,
   "pose": "A",
-  "character": "mozie",
+  "character": "myers",
   "position": "center"
 }
 
+function updateState() {
+  socket.emit("update-gif", stateToPath());
+}
+
+function updateCharacter(_character) {
+  currentState.character = _character;
+  updateState();
+}
+
+function updatePose(_pose) {
+  currentState.pose = _pose;
+  updateState();
+}
+
+function stateToPath() {
+  return `/characters/${currentState.character}/${currentState.pose}/${currentState.talking ? 2 : 1}.${currentState.character == "mozie" ? "gif" : "png"}`;
+}
+
 function changeGif(path) {
-  currentGif.src = path
+  currentGif.src = path;
 }
 
 function handleMainButton(e) {
+  const target = e.currentTarget;
   console.log(e.currentTarget.textContent);
+  updateCharacter(target.textContent);
 }
 
 function handleDirectionButton(e) {
@@ -32,25 +52,27 @@ function handleDirectionButton(e) {
 function handleSubButton(e) {
   const target = e.currentTarget;
   console.log(e.currentTarget.textContent);
+  updatePose(target.textContent)
 
-  switch (target.textContent) {
-    case "A":
-      changeGif("/mozie/mozie_idle_1.gif");
-      break;
-    case "B":
-      changeGif("/mozie/mozie_talk_1.gif");
-      break;
-    case "C":
-      changeGif("/mozie/mozie_idle_2.gif");
-      break;
-    case "D":
-      changeGif("/mozie/mozie_talk_2.gif");
-      break;
-    case "E":
-      changeGif("/forrest_mouth.jpg");
-      break;
-  }
-  socket.emit("update-gif", currentGif.src);
+  // switch (target.textContent) {
+  //   case "A":
+  //     changeGif("/characters/mozie/mozie_idle_1.gif");
+  //     break;
+  //   case "B":
+  //     changeGif("/characters/mozie/mozie_talk_1.gif");
+  //     break;
+  //   case "C":
+  //     changeGif("/characters/mozie/mozie_idle_2.gif");
+  //     break;
+  //   case "D":
+  //     changeGif("/characters/mozie/mozie_talk_2.gif");
+  //     break;
+  //   case "E":
+  //     changeGif("/characters/forrest_mouth.jpg");
+  //     break;
+  // }
+  // socket.emit("update-gif", stateToPath());
+  // console.log(currentState);
 }
 
 function handleSideButton(e) {
@@ -62,15 +84,15 @@ for (const button of mainButtons) {
 }
 
 for (const button of directionButtons) {
-  button.addEventListener("click", handleDirectionButton)
+  button.addEventListener("click", handleDirectionButton);
 }
 
 for (const button of subButtons) {
-  button.addEventListener("click", handleSubButton)
+  button.addEventListener("click", handleSubButton);
 }
 
 for (const button of sideButtons) {
-  button.addEventListener("click", handleSideButton)
+  button.addEventListener("click", handleSideButton);
 }
 
 // WebSocket

@@ -123,7 +123,7 @@ button:focus-visible {
   background-color: var(--primary-color);
 
   height: 300px;
-  min-width: 700px;
+  min-width: 900px;
 }
 
 .main-buttons {
