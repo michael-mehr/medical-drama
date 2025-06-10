@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
+import { CONFIG } from "./config";
 
-const socket = io("https://socket.minecraft.lgbt");
+const socket = io(CONFIG.SOCKET_URL);
 
 const sideButtons = document.querySelectorAll("div.side-buttons > button");
 const subButtons = document.querySelectorAll("div.sub-buttons > button");
@@ -10,12 +11,7 @@ const directionButtons = document.querySelectorAll("div.direction-buttons > butt
 const frame = document.querySelector("div.frame");
 const currentGif = document.getElementById("mozie-gif");
 
-let currentState = {
-  "character": "myers",
-  "pose": "A",
-  "talking": false,
-  "position": "center"
-}
+let currentState = {...CONFIG.DEFAULT_STATE}
 
 function updateState() {
   socket.emit("update-gif", stateToPath());
