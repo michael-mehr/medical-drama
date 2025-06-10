@@ -11,9 +11,9 @@ const frame = document.querySelector("div.frame");
 const currentGif = document.getElementById("mozie-gif");
 
 let currentState = {
-  "talking": false,
-  "pose": "A",
   "character": "myers",
+  "pose": "A",
+  "talking": false,
   "position": "center"
 }
 
@@ -32,7 +32,9 @@ function updatePose(_pose) {
 }
 
 function stateToPath() {
-  return `/characters/${currentState.character}/${currentState.pose}/${currentState.talking ? 2 : 1}.${currentState.character == "mozie" ? "gif" : "png"}`;
+  const ext = currentState.character === "mozie" ? "gif" : "png";
+  const talkingNum = currentState.talking ? 2 : 1;
+  return `/characters/${currentState.character}/${currentState.pose}/${talkingNum}.${ext}`;
 }
 
 function changeGif(path) {
