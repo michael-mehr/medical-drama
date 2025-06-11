@@ -9,7 +9,9 @@ const mainButtons = document.querySelectorAll("div.main-buttons > button");
 const directionButtons = document.querySelectorAll("div.direction-buttons > button");
 
 const frame = document.querySelector("div.frame");
-const currentGif = document.getElementById("mozie-gif");
+const mainCanvas = document.getElementById("main-canvas");
+const canvasCtx = mainCanvas.getContext("2d");
+
 
 let currentState = {...CONFIG.DEFAULT_STATE}
 
@@ -17,13 +19,18 @@ function updateState() {
   socket.emit("update-gif", stateToPath());
 }
 
-function updateCharacter(_character) {
-  currentState.character = _character;
+function updateCharacter(character) {
+  currentState.character = character;
   updateState();
 }
 
-function updatePose(_pose) {
-  currentState.pose = _pose;
+function updatePose(pose) {
+  currentState.pose = pose;
+  updateState();
+}
+
+function updatePosition(position) {
+  currentState.position = position;
   updateState();
 }
 
@@ -34,7 +41,29 @@ function stateToPath() {
 }
 
 function changeGif(path) {
-  currentGif.src = path;
+  const img = new window.Image();
+  img.onload = function() {
+    canvasCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+    // Scale image to fit canvas height, preserve aspect ratio, center horizontally
+    const scale = mainCanvas.height / img.height;
+    const drawHeight = mainCanvas.height;
+    const drawWidth = img.width * scale;
+    let x;
+    const y = 0;
+    switch (currentState.position) {
+      case "LEFT":
+        x = 0;
+        break;
+      case "RIGHT":
+        x = mainCanvas.width - drawWidth;
+        break;
+      case "UP":
+      default:  
+        x = (mainCanvas.width - drawWidth) / 2;
+    }
+    canvasCtx.drawImage(img, x, y, drawWidth, drawHeight);
+  };
+  img.src = path;
 }
 
 function handleMainButton(e) {
@@ -44,6 +73,7 @@ function handleMainButton(e) {
 }
 
 function handleDirectionButton(e) {
+  updatePosition(e.currentTarget.textContent);
   console.log(e.currentTarget.textContent);
 }
 
@@ -51,26 +81,6 @@ function handleSubButton(e) {
   const target = e.currentTarget;
   console.log(e.currentTarget.textContent);
   updatePose(target.textContent)
-
-  // switch (target.textContent) {
-  //   case "A":
-  //     changeGif("/characters/mozie/mozie_idle_1.gif");
-  //     break;
-  //   case "B":
-  //     changeGif("/characters/mozie/mozie_talk_1.gif");
-  //     break;
-  //   case "C":
-  //     changeGif("/characters/mozie/mozie_idle_2.gif");
-  //     break;
-  //   case "D":
-  //     changeGif("/characters/mozie/mozie_talk_2.gif");
-  //     break;
-  //   case "E":
-  //     changeGif("/characters/forrest_mouth.jpg");
-  //     break;
-  // }
-  // socket.emit("update-gif", stateToPath());
-  // console.log(currentState);
 }
 
 function handleSideButton(e) {
