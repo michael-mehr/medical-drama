@@ -53,13 +53,13 @@ function changeGif(path) {
     let x;
     const y = 0;
     switch (currentState.position) {
-      case "LEFT":
+      case "left":
         x = 0;
         break;
-      case "RIGHT":
+      case "right":
         x = mainCanvas.width - drawWidth;
         break;
-      case "UP":
+      case "up":
       default:  
         x = (mainCanvas.width - drawWidth) / 2;
     }

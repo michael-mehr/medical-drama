@@ -4,6 +4,6 @@ export const CONFIG = {
     character: "mozie",
     pose: "A",
     talking: false,
-    position: "UP"
+    position: "up"
   }
 };
