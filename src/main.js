@@ -8,6 +8,8 @@ const subButtons = document.querySelectorAll("div.sub-buttons > button");
 const mainButtons = document.querySelectorAll("div.main-buttons > button");
 const directionButtons = document.querySelectorAll("div.direction-buttons > button");
 
+const characterSelect = document.getElementById("character-select");
+
 const frame = document.querySelector("div.frame");
 const mainCanvas = document.getElementById("main-canvas");
 const canvasCtx = mainCanvas.getContext("2d");
@@ -67,24 +69,31 @@ function changeGif(path) {
 }
 
 function handleMainButton(e) {
-  const target = e.currentTarget;
-  console.log(e.currentTarget.textContent);
-  updateCharacter(target.textContent);
+  const character = e.currentTarget.dataset.character;
+  console.log(character);
+  updateCharacter(character);
 }
 
 function handleDirectionButton(e) {
-  updatePosition(e.currentTarget.textContent);
-  console.log(e.currentTarget.textContent);
+  const direction = e.currentTarget.dataset.direction;
+  console.log(direction);
+  updatePosition(direction);
 }
 
 function handleSubButton(e) {
-  const target = e.currentTarget;
-  console.log(e.currentTarget.textContent);
-  updatePose(target.textContent)
+  const pose = e.currentTarget.dataset.pose;
+  console.log(pose);
+  updatePose(pose);
 }
 
 function handleSideButton(e) {
   console.log(e.currentTarget.textContent);
+}
+
+function handleCharacterSelect(e) {
+  const value = e.currentTarget.value;
+  console.log(value);
+  updateCharacter(value);
 }
 
 for (const button of mainButtons) {
@@ -102,6 +111,8 @@ for (const button of subButtons) {
 for (const button of sideButtons) {
   button.addEventListener("click", handleSideButton);
 }
+
+characterSelect.addEventListener('change', handleCharacterSelect);
 
 // WebSocket
 
