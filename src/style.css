@@ -121,9 +121,10 @@ button:focus-visible {
 .frame {
   /* border: 1px dashed black; */
   background-color: var(--primary-color);
-
+  
   height: 300px;
   min-width: 900px;
+  margin-bottom: 1rem;
 }
 
 .main-buttons {
@@ -156,9 +157,6 @@ button:focus-visible {
   margin-bottom: .5rem;
 }
 
-.top-section {
-  padding-bottom: 1rem;
-}
 
 
 /* Utility Classes */

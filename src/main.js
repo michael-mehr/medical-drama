@@ -1,5 +1,6 @@
 import { io } from "socket.io-client";
 import { CONFIG } from "./config";
+import { currentState, updateCharacter, updatePose, updatePosition, updateTalking, stateToPath } from "./state";
 
 const socket = io(CONFIG.SOCKET_URL);
 
@@ -15,32 +16,32 @@ const mainCanvas = document.getElementById("main-canvas");
 const canvasCtx = mainCanvas.getContext("2d");
 
 
-let currentState = {...CONFIG.DEFAULT_STATE}
+// let currentState = {...CONFIG.DEFAULT_STATE}
 
 function updateState() {
   socket.emit("update-gif", stateToPath());
 }
 
-function updateCharacter(character) {
-  currentState.character = character;
-  updateState();
-}
+// function updateCharacter(character) {
+//   currentState.character = character;
+//   updateState();
+// }
 
-function updatePose(pose) {
-  currentState.pose = pose;
-  updateState();
-}
+// function updatePose(pose) {
+//   currentState.pose = pose;
+//   updateState();
+// }
 
-function updatePosition(position) {
-  currentState.position = position;
-  updateState();
-}
+// function updatePosition(position) {
+//   currentState.position = position;
+//   updateState();
+// }
 
-function stateToPath() {
-  const ext = currentState.character === "mozie" ? "gif" : "png";
-  const talkingNum = currentState.talking ? 2 : 1;
-  return `/characters/${currentState.character}/${currentState.pose}/${talkingNum}.${ext}`;
-}
+// function stateToPath() {
+//   const ext = currentState.character === "mozie" ? "gif" : "png";
+//   const talkingNum = currentState.talking ? 2 : 1;
+//   return `/characters/${currentState.character}/${currentState.pose}/${talkingNum}.${ext}`;
+// }
 
 function changeGif(path) {
   const img = new window.Image();
@@ -69,21 +70,24 @@ function changeGif(path) {
 }
 
 function handleMainButton(e) {
-  const character = e.currentTarget.dataset.character;
-  console.log(character);
-  updateCharacter(character);
+  // const character = e.currentTarget.dataset.character;
+  // console.log(character);
+  // updateCharacter(character);
+  // updateState();
 }
 
 function handleDirectionButton(e) {
   const direction = e.currentTarget.dataset.direction;
   console.log(direction);
   updatePosition(direction);
+  updateState();
 }
 
 function handleSubButton(e) {
   const pose = e.currentTarget.dataset.pose;
   console.log(pose);
   updatePose(pose);
+  updateState();
 }
 
 function handleSideButton(e) {
@@ -94,6 +98,7 @@ function handleCharacterSelect(e) {
   const value = e.currentTarget.value;
   console.log(value);
   updateCharacter(value);
+  updateState();
 }
 
 for (const button of mainButtons) {
@@ -128,3 +133,4 @@ socket.on("update-gif", (gifPath) => {
   changeGif(gifPath);
 });
 
+updateState();
