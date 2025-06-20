@@ -1,9 +1,6 @@
-import { io } from "socket.io-client";
-import { CONFIG } from "./config";
 import { currentState, updateCharacter, updatePose, updatePosition, updateTalking, stateToPath } from "./state";
 import { startMicDetection } from "./microphone";
-
-const socket = io(CONFIG.SOCKET_URL);
+import { socket, handleSocketEvents } from "./socket";
 
 const sideButtons = document.querySelectorAll("div.side-buttons > button");
 const subButtons = document.querySelectorAll("div.sub-buttons > button");
@@ -12,39 +9,14 @@ const directionButtons = document.querySelectorAll("div.direction-buttons > butt
 
 const characterSelect = document.getElementById("character-select");
 
-const frame = document.querySelector("div.frame");
 const mainCanvas = document.getElementById("main-canvas");
 const canvasCtx = mainCanvas.getContext("2d");
-
-
-// let currentState = {...CONFIG.DEFAULT_STATE}
 
 export function updateState() {
   socket.emit("update-gif", stateToPath());
 }
 
-// function updateCharacter(character) {
-//   currentState.character = character;
-//   updateState();
-// }
-
-// function updatePose(pose) {
-//   currentState.pose = pose;
-//   updateState();
-// }
-
-// function updatePosition(position) {
-//   currentState.position = position;
-//   updateState();
-// }
-
-// function stateToPath() {
-//   const ext = currentState.character === "mozie" ? "gif" : "png";
-//   const talkingNum = currentState.talking ? 2 : 1;
-//   return `/characters/${currentState.character}/${currentState.pose}/${talkingNum}.${ext}`;
-// }
-
-function changeGif(path) {
+export function changeGif(path) {
   const img = new window.Image();
   img.onload = function() {
     canvasCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
@@ -71,10 +43,7 @@ function changeGif(path) {
 }
 
 function handleMainButton(e) {
-  // const character = e.currentTarget.dataset.character;
-  // console.log(character);
-  // updateCharacter(character);
-  // updateState();
+  
 }
 
 function handleDirectionButton(e) {
@@ -120,25 +89,7 @@ for (const button of sideButtons) {
 
 characterSelect.addEventListener('change', handleCharacterSelect);
 
-// WebSocket
-
-socket.on("connect", () => {
-  console.log("Connected to server");
-});
-
-socket.on("connect_error", (err) => {
-  console.error("Connection failed:", err);
-});
-
-socket.on("update-gif", (gifPath) => {
-  changeGif(gifPath);
-});
-
-// startMicrophone((volume) => {
-//   console.log("Microphone input detected! Volume:", volume);
-//   // Trigger your event or update state here
-// });
-
+handleSocketEvents();
 startMicDetection(0.1);
 
 updateState();
