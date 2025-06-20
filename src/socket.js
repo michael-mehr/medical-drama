@@ -4,7 +4,7 @@ import { changeGif } from "./canvas";
 
 export const socket = io(CONFIG.SOCKET_URL);
 
-export function handleSocketEvents() {
+export function setupSocketEvents() {
   socket.on("connect", () => {
     console.log("Connected to server");
   });
