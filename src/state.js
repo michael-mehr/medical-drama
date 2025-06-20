@@ -1,4 +1,5 @@
 import { CONFIG } from "./config";
+import { updateState } from "./main.js";
 
 export let currentState = { ...CONFIG.DEFAULT_STATE };
 
@@ -16,6 +17,7 @@ export function updatePosition(position) {
 
 export function updateTalking(talking) {
   currentState.talking = talking;
+  updateState();
 }
 
 export function stateToPath() {

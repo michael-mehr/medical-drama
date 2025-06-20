@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 import { CONFIG } from "./config";
 import { currentState, updateCharacter, updatePose, updatePosition, updateTalking, stateToPath } from "./state";
+import { startMicDetection } from "./microphone";
 
 const socket = io(CONFIG.SOCKET_URL);
 
@@ -18,7 +19,7 @@ const canvasCtx = mainCanvas.getContext("2d");
 
 // let currentState = {...CONFIG.DEFAULT_STATE}
 
-function updateState() {
+export function updateState() {
   socket.emit("update-gif", stateToPath());
 }
 
@@ -132,5 +133,12 @@ socket.on("connect_error", (err) => {
 socket.on("update-gif", (gifPath) => {
   changeGif(gifPath);
 });
+
+// startMicrophone((volume) => {
+//   console.log("Microphone input detected! Volume:", volume);
+//   // Trigger your event or update state here
+// });
+
+startMicDetection(0.1);
 
 updateState();
