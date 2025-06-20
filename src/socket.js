@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import { CONFIG } from "./config";
-import { changeGif } from "./main";
+import { changeGif } from "./canvas";
 
 export const socket = io(CONFIG.SOCKET_URL);
 
