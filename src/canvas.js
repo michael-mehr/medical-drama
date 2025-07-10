@@ -3,7 +3,9 @@ import { currentState } from "./state";
 const mainCanvas = document.getElementById("main-canvas");
 const canvasCtx = mainCanvas.getContext("2d");
 
-export function changeGif(path) {
+const canvasAspectRatio = 
+
+function changeGif(path) {
   const img = new window.Image();
   img.onload = function() {
     canvasCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
@@ -27,4 +29,12 @@ export function changeGif(path) {
     canvasCtx.drawImage(img, x, y, drawWidth, drawHeight);
   };
   img.src = path;
+}
+
+function drawModel(model) {
+
+}
+
+function canvasLoop(timeStamp){
+  window.requestAnimationFrame(canvasLoop);
 }

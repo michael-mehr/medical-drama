@@ -8,3 +8,9 @@ setupButtonEvents();
 startMicDetection(0.1);
 
 updateState();
+
+function main() {
+
+}
+
+window.onload = main;

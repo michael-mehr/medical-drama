@@ -22,12 +22,10 @@ export async function startMicDetection(threshold = 0.1) {
       const volume = Math.sqrt(sum / dataArray.length); // RMS value
 
       if (volume > threshold) {
-        // console.log(`🔊 Above Threshold. Volume: ${volume.toFixed(3)}`);
         if (!currentState.talking) {
           updateTalking(true);
         }
       } else {
-        // console.log(`🕓 Below Threshold. Volume: ${volume.toFixed(3)}`);
         if (currentState.talking) {
           updateTalking(false);
           console.log(currentState.talking);
