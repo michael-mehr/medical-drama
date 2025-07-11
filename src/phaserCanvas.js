@@ -12,7 +12,7 @@ export function startPhaser() {
     type: Phaser.AUTO,
     width: 900,
     height: 300,
-    parent: "phaser-div", // Attach to your #app div
+    parent: "phaser-div",
     scene: {
       preload,
       create,
@@ -66,7 +66,7 @@ function update() {
 
   if (currentState.talking === true) {
     user.play('talking', true);
-  // } else {
+  } else {
 
   }
 }
