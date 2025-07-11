@@ -55,5 +55,19 @@ function update() {
   } else if (currentState.character === 'myers') {
     user.setTexture('myersA');
   }
+
+  if (currentState.position === 'left') {
+    user.x = user.width / 2;
+  } else if (currentState.position === 'up') {
+    user.x = 450;
+  } else if (currentState.position === 'right') {
+    user.x = 900 - user.width / 2
+  }
+
+  if (currentState.talking === true) {
+    user.play('talking', true);
+  // } else {
+
+  }
 }
 
