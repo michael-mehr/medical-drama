@@ -3,13 +3,12 @@ import { currentState } from "./state";
 const mainCanvas = document.getElementById("main-canvas");
 const canvasCtx = mainCanvas.getContext("2d");
 
-const canvasAspectRatio = 
+// const canvasAspectRatio = 
 
-function changeGif(path) {
+export function changeGif(path) {
   const img = new window.Image();
   img.onload = function() {
     canvasCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-    // Scale image to fit canvas height, preserve aspect ratio, center horizontally
     const scale = mainCanvas.height / img.height;
     const drawHeight = mainCanvas.height;
     const drawWidth = img.width * scale;

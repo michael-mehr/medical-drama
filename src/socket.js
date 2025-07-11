@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 import { CONFIG } from "./config";
-import { changeGif } from "./canvas";
+// import { changeGif } from "./canvas";
+import { updateState } from "./state";
 
 export const socket = io(CONFIG.SOCKET_URL);
 
@@ -14,6 +15,6 @@ export function setupSocketEvents() {
   });
 
   socket.on("update-gif", (gifPath) => {
-    changeGif(gifPath);
+    updateState(gifPath);
   });
 }

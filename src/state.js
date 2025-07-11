@@ -4,7 +4,8 @@ import { socket } from "./socket.js";
 export let currentState = { ...CONFIG.DEFAULT_STATE };
 
 export function stateToPath() {
-  const ext = currentState.character === "mozie" ? "gif" : "png";
+  // const ext = currentState.character === "mozie" ? "gif" : "png";
+  const ext = "png";
   const talkingNum = currentState.talking ? 2 : 1;
   return `/characters/${currentState.character}/${currentState.pose}/${talkingNum}.${ext}`;
 }
