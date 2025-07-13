@@ -1,4 +1,4 @@
-import { currentState, updateTalking } from "./state";
+import { currentState, updateTalking, updateState } from "./state";
 
 export async function startMicDetection(threshold = 0.1) {
   try {
@@ -24,10 +24,12 @@ export async function startMicDetection(threshold = 0.1) {
       if (volume > threshold) {
         if (!currentState.talking) {
           updateTalking(true);
+          updateState();
         }
       } else {
         if (currentState.talking) {
           updateTalking(false);
+          updateState();
           console.log(currentState.talking);
         }
       }

@@ -11,7 +11,7 @@ export function stateToPath() {
 }
 
 export function updateState() {
-  socket.emit("update-gif", stateToPath());
+  socket.emit("update-state", currentState);
 }
 
 export function updateCharacter(character) {
@@ -28,5 +28,4 @@ export function updatePosition(position) {
 
 export function updateTalking(talking) {
   currentState.talking = talking;
-  updateState();
 }

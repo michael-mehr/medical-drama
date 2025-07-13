@@ -43,7 +43,7 @@ function create() {
   });
 
   user = this.add.sprite(150, 150, 'mozie-talking');
-  user.play("talking");
+  // user.play("talking");
 }
 
 function update() {
@@ -66,8 +66,10 @@ function update() {
 
   if (currentState.talking === true) {
     user.play('talking', true);
-  } else {
-
+    console.log(currentState);
+  } else if (currentState.talking === false && !user.anims.isPaused) {
+    user.anims.pause();
+    user.setFrame(0);
   }
 }
 
