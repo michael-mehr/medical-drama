@@ -19,6 +19,7 @@ export function setupSocketEvents() {
   // });
 
   socket.on("update-state", (state) => {
+    console.log(state);
     updateCharacter(state.character);
     updatePose(state.pose);
     updatePosition(state.position);

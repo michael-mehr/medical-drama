@@ -1,17 +1,21 @@
 import Phaser from "phaser";
 import { currentState } from "./state";
 
-// let leftX = sprite.x / 2;
-// let centerX = scene.width / 2;
-// let rightX = scene.width - left.x;
-// let spriteY = scene.height / 2;
+const leftX = 150;
+const centerX = 450;
+const rightX = 750;
+const spriteY = 150;
 let user;
+let userVelocity = 2000;
 
 export function startPhaser() {
   const config = {
     type: Phaser.AUTO,
     width: 900,
     height: 300,
+    physics: {
+      default: 'arcade',
+    },
     parent: "phaser-div",
     scene: {
       preload,
@@ -42,8 +46,9 @@ function create() {
     repeat: -1
   });
 
-  user = this.add.sprite(150, 150, 'mozie-talking');
+  user = this.physics.add.sprite(150, 150, 'mozie-talking');
   // user.play("talking");
+  // user.setCollideWorldBounds(true);
 }
 
 function update() {
@@ -57,11 +62,12 @@ function update() {
   }
 
   if (currentState.position === 'left') {
-    user.x = user.width / 2;
+    this.physics.moveTo(user, leftX, spriteY, 2000, 100);
   } else if (currentState.position === 'up') {
-    user.x = 450;
+    console.log(user.x);
+    this.physics.moveTo(user, centerX, spriteY, 2000, 100);
   } else if (currentState.position === 'right') {
-    user.x = 900 - user.width / 2
+    this.physics.moveTo(user, rightX, spriteY, 2000, 100);
   }
 
   if (currentState.talking === true) {
@@ -71,5 +77,7 @@ function update() {
     user.anims.pause();
     user.setFrame(0);
   }
+
 }
 
+// function 
