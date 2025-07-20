@@ -5,6 +5,7 @@ const leftX = 150;
 const centerX = 450;
 const rightX = 750;
 const spriteY = 150;
+const START_X = centerX;
 let user;
 let userVelocity = 2000;
 
@@ -46,7 +47,7 @@ function create() {
     repeat: -1
   });
 
-  user = this.physics.add.sprite(150, 150, 'mozie-talking');
+  user = this.physics.add.sprite(START_X, spriteY, 'mozie-talking');
   // user.play("talking");
   // user.setCollideWorldBounds(true);
 }
@@ -64,7 +65,6 @@ function update() {
   if (currentState.position === 'left') {
     this.physics.moveTo(user, leftX, spriteY, 2000, 100);
   } else if (currentState.position === 'up') {
-    console.log(user.x);
     this.physics.moveTo(user, centerX, spriteY, 2000, 100);
   } else if (currentState.position === 'right') {
     this.physics.moveTo(user, rightX, spriteY, 2000, 100);

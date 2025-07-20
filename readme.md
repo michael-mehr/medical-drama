@@ -4,24 +4,19 @@
 
 ### Doing
 
-- [ ] Have `main` buttons change pose
+- [ ] Twitch Authentication
 
 ### Soon
 
 - [ ] `down` button removes image from canvas
+- [ ] Remote client hosting
 
 ### Eventually
 
-- [ ] Refactor code
-  - [ ] Separate into different `.js` files
-    - [ ] Event handlers
-    - [ ] Websocket
-    - [ ] Canvas
+- [ ] Have `main` buttons change pose
 - [ ] `sub` buttons change expression
-- [ ] Adjust sizing and padding
-- [ ] Arrow SVGs
-- [ ] Remote client hosting
-- [ ] Either fix gif playback or use sprite sheets, video files
+- [ ] Refactor `phaserCanvas.js`
+- [ ] Refactor HTML/CSS
 
 ### Done
 
@@ -39,3 +34,14 @@
 - [X] Character change
 - [X] Change `textContent` values to `data-` values
 - [X] Drop-down menu for character selection
+- [X] Either fix gif playback or use sprite sheets, video files
+- [X] Refactor code
+  - [X] Separate into different `.js` files
+    - [X] Event handlers
+    - [X] Websocket
+    - [X] Canvas
+- [X] Adjust sizing and padding
+- [X] Microphone detection
+- [X] Sprite updates based on microphone volume
+- [X] Replace HTML Canvas with Phaser
+- [X] Sprites move into position instead of 'teleporting'
