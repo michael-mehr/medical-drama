@@ -4,19 +4,20 @@
 
 ### Doing
 
-- [ ] Twitch Authentication
+- [ ] Update UI
 
 ### Soon
 
+- [ ] Refactor `phaserCanvas.js`
 - [ ] `down` button removes image from canvas
-- [ ] Remote client hosting
+- [ ] Have `main` buttons change pose
+- [ ] `sub` buttons change expression
 
 ### Eventually
 
-- [ ] Have `main` buttons change pose
-- [ ] `sub` buttons change expression
-- [ ] Refactor `phaserCanvas.js`
-- [ ] Refactor HTML/CSS
+- [ ] Swappable background
+- [ ] 2+ models displayed and independently controlled
+- [ ] Load model based on Twitch username/id
 
 ### Done
 
@@ -45,3 +46,5 @@
 - [X] Sprite updates based on microphone volume
 - [X] Replace HTML Canvas with Phaser
 - [X] Sprites move into position instead of 'teleporting'
+- [X] Remote client hosting
+- [X] Twitch Auth
