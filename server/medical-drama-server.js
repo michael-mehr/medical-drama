@@ -7,7 +7,7 @@ import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 
-const CLIENT_URL = 'http://localhost:5173';
+const CLIENT_URL = process.env.REMOTE_URL;
 
 const app = express();
 

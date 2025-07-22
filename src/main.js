@@ -3,6 +3,8 @@ import { startMicDetection } from "./microphone";
 import { setupSocketEvents } from "./socket";
 import { setupButtonEvents } from "./buttons";
 import { startPhaser } from "./phaserCanvas";
+// import { config } from "dotenv";
+// config();
 
 setupSocketEvents();
 setupButtonEvents();
@@ -17,7 +19,7 @@ function main() {
 
 window.onload = main;
 
-fetch('http://localhost:5892/api/me', {
+fetch(`https://socket.minecraft.lgbt/api/me`, {
   credentials: 'include'
 })
   .then(res => res.json())
