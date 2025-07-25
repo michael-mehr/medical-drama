@@ -6,9 +6,11 @@ import { startPhaser } from "./phaserCanvas";
 // import { config } from "dotenv";
 // config();
 
+let mic_threshold = 0.01;
+
 setupSocketEvents();
 setupButtonEvents();
-startMicDetection(0.1);
+startMicDetection(mic_threshold);
 
 updateState();
 const game = startPhaser();

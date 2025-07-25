@@ -5,11 +5,12 @@
 ### Doing
 
 - [ ] Update UI
+  - [ ] CSS Reset
+  - [ ] 
 
 ### Soon
 
 - [ ] Refactor `phaserCanvas.js`
-- [ ] `down` button removes image from canvas
 - [ ] Have `main` buttons change pose
 - [ ] `sub` buttons change expression
 

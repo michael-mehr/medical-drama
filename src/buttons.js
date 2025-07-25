@@ -1,32 +1,27 @@
 import { updateCharacter, updatePose, updatePosition, updateState } from "./state";
 
-const sideButtons = document.querySelectorAll("div.side-buttons > button");
-const subButtons = document.querySelectorAll("div.sub-buttons > button");
-const mainButtons = document.querySelectorAll("div.main-buttons > button");
-const directionButtons = document.querySelectorAll("div.direction-buttons > button");
+const expressionButtons = document.querySelectorAll("div.expression-buttons > button");
+const poseButtons = document.querySelectorAll("div.pose-buttons > button");
+const positionButtons = document.querySelectorAll("div.position-buttons > button");
 
 const characterSelect = document.getElementById("character-select");
 
-function handleMainButton(e) {
-  
-}
-
-function handleDirectionButton(e) {
-  const direction = e.currentTarget.dataset.direction;
-  console.log(direction);
-  updatePosition(direction);
-  updateState();
-}
-
-function handleSubButton(e) {
+function handlePoseButton(e) {
   const pose = e.currentTarget.dataset.pose;
   console.log(pose);
   updatePose(pose);
   updateState();
 }
 
-function handleSideButton(e) {
-  console.log(e.currentTarget.textContent);
+function handlePositionButton(e) {
+  const position = e.currentTarget.dataset.position;
+  console.log(position);
+  updatePosition(position);
+  updateState();
+}
+
+function handleExpressionButton(e) {
+
 }
 
 function handleCharacterSelect(e) {
@@ -37,20 +32,16 @@ function handleCharacterSelect(e) {
 }
 
 export function setupButtonEvents() {
-  for (const button of mainButtons) {
-    button.addEventListener("click", handleMainButton);
+  for (const button of poseButtons) {
+    button.addEventListener("click", handlePoseButton);
   }
 
-  for (const button of directionButtons) {
-    button.addEventListener("click", handleDirectionButton);
+  for (const button of positionButtons) {
+    button.addEventListener("click", handlePositionButton);
   }
 
-  for (const button of subButtons) {
-    button.addEventListener("click", handleSubButton);
-  }
-
-  for (const button of sideButtons) {
-    button.addEventListener("click", handleSideButton);
+  for (const button of expressionButtons) {
+    button.addEventListener("click", handleExpressionButton);
   }
 
   characterSelect.addEventListener('change', handleCharacterSelect);

@@ -2,6 +2,8 @@
 /*     style.css     */
 /* ================= */
 
+@import 'reset.css';
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -9,7 +11,10 @@
 
   --primary-color: hsl(263, 6%, 75%);
   --secondary-color: hsl(195, 46%, 28%);
-  --background-color: hsl(300, 20%, 98%);
+  /* --background-color: hsl(300, 20%, 98%); */
+  --transparent-color: hsla(0, 0%, 0%, 0%);
+  
+  --background-size: 64px;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -38,36 +43,32 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  background-image: url('/ui/tilex2.png');
+  background-size: var(--background-size);
+  animation: movingBackground 1s linear infinite;
+}
+@keyframes movingBackground {
+  from { background-position: 0 0;}
+  to {background-position: var(--background-size) var(--background-size);}
 }
 
 button {
-  /* border-radius: 8px; */
-  border: 1px solid transparent;
-  min-width: 3rem;
-  min-height: 3rem;
-
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--primary-color);
-  cursor: pointer;
-  transition: border-color 0.25s;
+ margin: 0;
+ padding: 0;
+ background-color: var(--transparent-color);
+ border-color: var(--transparent-color);
+ border-width: 0px;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
 }
 
 /* ~~~~~~~~~~ */
 /* Components */
 /* ~~~~~~~~~~ */
 
-#up-button {
+/* #up-button {
   grid-column: 2;
   grid-row: 1;
 }
@@ -85,11 +86,7 @@ button:focus-visible {
 #down-button {
   grid-column: 2;
   grid-row: 3;
-}
-
-#mozie-gif {
-  height: 300px
-}
+} */
 
 /* Component Classes */
 
@@ -101,25 +98,34 @@ button:focus-visible {
 
 .controls {
   justify-content: space-between;
+  align-items: flex-start;
 }
 
-.direction-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 5px;
-
-  background-color: var(--primary-color);
+.position-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: url('/ui/position/position-framex2.png');
+  box-shadow: 0px 5px hsla(0, 0%, 0%, 30%);
 }
 
-.direction-buttons > button {
-  background-color: var(--secondary-color);
+.position-buttons {
+  display: flex;
+  padding: 36px 10px 0px 10px;
+  gap: 12px;
+
+  /* gap: 5px; */
+}
+
+/* .position-buttons > button {
   max-width: 5rem;
-  aspect-ratio: 1;
+} */
+
+.right > img {
+  transform: scale(-1);
 }
 
 .frame {
-  /* border: 1px dashed black; */
   background-color: var(--primary-color);
   
   height: 300px;
@@ -127,36 +133,67 @@ button:focus-visible {
   margin-bottom: 1rem;
 }
 
-.main-buttons {
+.pose-buttons {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: center; */
+  background-image: url('/ui/pose/pose-framex2.png');
+  padding: 22px 8px 8px 8px;
+  gap: 2px;
+  box-shadow: 0px 5px hsla(0, 0%, 0%, 30%);
+
 }
 
-.main-buttons > button {
-  min-width: 16rem;
+.pose-buttons > button {
+  min-width: 100px;
+  min-height: 34px;
 }
 
-.mozie > img {
-  height: 300px;
+.pose-buttons > button:active > img {
+  content: url('/ui/pose/pose-button-pressedx2.png');
 }
 
-.sub-buttons {
+.expression-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 2px;
+  background: url('/ui/expressions/expression-framex2.png');
+  padding: 22px 8px 8px 8px;
+  box-shadow: 0px 5px hsla(0, 0%, 0%, 30%);
 }
 
-.side-buttons {
+.expression-buttons > button:active > img {
+  content: url('/ui/expressions/exp-pressedx2.png');
+}
+
+.entry-buttons {
   display: flex;
-  flex-direction: column;
-  padding-right: 1rem;
+  gap: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 4px;
 }
 
-.side-buttons > button {
-  margin-bottom: .5rem;
+.entry-buttons > button.enter:active > img {
+  content: url('/ui/position/position-enter-pressedx2.png');
 }
 
+.entry-buttons > button.exit:active > img {
+  content: url('/ui/position/position-exit-pressedx2.png');
+}
+
+button.left:active > img {
+  content: url('/ui/position/position-slide-button-pressedx2.png');
+}
+
+button.center:active > img {
+  content: url('/ui/position/position-button-pressedx2.png');
+}
+
+button.right:active > img {
+  content: url('/ui/position/position-slide-button-pressedx2.png');
+}
 
 
 /* Utility Classes */

@@ -70,8 +70,10 @@ function update() {
     this.physics.moveTo(user, rightX, spriteY, 2000, 100);
   }
 
-  if (currentState.talking === true) {
-    user.play('talking', true);
+  if (currentState.talking === true && user.anims.isPaused) {
+    if (currentState.character === 'mozie'){
+      user.play('talking', true);
+    }
     console.log(currentState);
   } else if (currentState.talking === false && !user.anims.isPaused) {
     user.anims.pause();
