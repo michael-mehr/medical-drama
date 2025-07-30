@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import { CONFIG } from "./config";
 // import { changeGif } from "./canvas";
-import { updateCharacter, updatePose, updatePosition, updateState, updateTalking } from "./state";
+import { updateCharacter, updatePose, updatePosition, updateState, updateTalking, updateExpression, currentState} from "./state";
 
 export const socket = io(CONFIG.SOCKET_URL);
 
@@ -19,10 +19,13 @@ export function setupSocketEvents() {
   // });
 
   socket.on("update-state", (state) => {
-    console.log(state);
-    updateCharacter(state.character);
-    updatePose(state.pose);
-    updatePosition(state.position);
-    updateTalking(state.talking);
+    if (state != currentState) {
+      console.log(state);
+      updateCharacter(state.character);
+      updatePose(state.pose);
+      updatePosition(state.position);
+      updateTalking(state.talking);
+      updateExpression(state.expression);
+    }
   })
 }

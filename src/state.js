@@ -29,3 +29,7 @@ export function updatePosition(position) {
 export function updateTalking(talking) {
   currentState.talking = talking;
 }
+
+export function updateExpression(expression) {
+  currentState.expression = expression;
+}

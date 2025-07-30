@@ -1,4 +1,4 @@
-import { updateCharacter, updatePose, updatePosition, updateState } from "./state";
+import { updateCharacter, updateExpression, updatePose, updatePosition, updateState } from "./state";
 
 const expressionButtons = document.querySelectorAll("div.expression-buttons > button");
 const poseButtons = document.querySelectorAll("div.pose-buttons > button");
@@ -21,7 +21,10 @@ function handlePositionButton(e) {
 }
 
 function handleExpressionButton(e) {
-
+  const expression = e.currentTarget.dataset.pose;
+  console.log(expression);
+  updateExpression(expression);
+  updateState();
 }
 
 function handleCharacterSelect(e) {

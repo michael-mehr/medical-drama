@@ -1,18 +1,61 @@
-# Interactive Thing
+# Medical Drama OBS Tool
+
+## Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/michael-mehr/medical-drama
+cd medical-drama
+```
+
+### Install npm packages
+
+```bash
+npm i
+```
+
+### Create a `/.env` and fill in these values
+
+```env
+TWITCH_CLIENT_ID=
+TWITCH_CLIENT_SECRET=
+TWITCH_CALLBACK_URL=
+SESSION_SECRET=
+LOCAL_URL=http://localhost:5173
+REMOTE_URL=
+SOCKET_URL=
+```
+
+### Run client development environment
+
+```bash
+npm run dev
+```
+
+### Minify frontend code for production into `/dist/``
+
+```bash
+npm run build
+```
+
+### Run node server
+
+```bash
+node server/medical-drama-server.js
+```
 
 ## TODO
 
 ### Doing
 
-- [ ] Update UI
-  - [ ] CSS Reset
-  - [ ] 
 
 ### Soon
 
 - [ ] Refactor `phaserCanvas.js`
 - [ ] Have `main` buttons change pose
 - [ ] `sub` buttons change expression
+- [ ] Convert user interface into phaser
 
 ### Eventually
 
@@ -49,3 +92,4 @@
 - [X] Sprites move into position instead of 'teleporting'
 - [X] Remote client hosting
 - [X] Twitch Auth
+- [X] Update UI

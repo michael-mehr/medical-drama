@@ -1,9 +1,10 @@
 export const CONFIG = {
   SOCKET_URL: "https://socket.minecraft.lgbt",
   DEFAULT_STATE:  {
-    character: "mozie",
+    character: "inari",
     pose: "A",
     talking: false,
-    position: "up"
+    position: "up",
+    expression: "A",
   }
 };
