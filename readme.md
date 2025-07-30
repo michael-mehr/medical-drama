@@ -33,7 +33,7 @@ SOCKET_URL=
 npm run dev
 ```
 
-### Minify frontend code for production into `/dist/``
+### Minify frontend code for production into `/dist/`
 
 ```bash
 npm run build
