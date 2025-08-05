@@ -7,7 +7,7 @@ import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 
-const CLIENT_URL = process.env.REMOTE_URL;
+const CLIENT_URL = process.env.CLIENT_URL;
 
 const app = express();
 
@@ -48,13 +48,31 @@ const io = new Server(httpServer, {
   }
 });
 
+const WHITELISTED_USERS = ['mikemeows', 'saladforrest'];
+
 io.on('connection', (socket) => {
+  socket.on('authenticate', (userData) => {
+    const isWhitelisted = WHITELISTED_USERS.includes(userData.username);
+    socket.userData = userData;
+    socket.isAuthenticated = isWhitelisted;
+    
+    if (isWhitelisted) {
+      console.log(`Authenticated whitelisted user: ${userData.username}`);
+      socket.emit('auth-success');
+    } else {
+      console.log(`Rejected non-whitelisted user: ${userData.username}`);
+      socket.emit('auth-failed');
+    }
+  });
+
   console.log('a user connected');
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
   socket.on("update-state", (state) => {
-    io.emit("update-state", state);
+    if(socket.isAuthenticated) {
+      io.emit("update-state", state);
+    }
   });
 });
 

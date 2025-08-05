@@ -11,6 +11,10 @@ class MedicalDrama extends Phaser.Scene {
       frameWidth: 300,
       frameHeight: 300
     });
+    this.load.spritesheet('inari', 'characters/inari/Inari-sheet-final.png', {
+      frameWidth: 192,
+      frameHeight: 205
+    });
     this.load.image('forrest', 'characters/forrest/A/1.png');
     this.load.image('myersA', 'characters/myers/A/1.png');
     this.load.image('myersB', 'characters/myers/B/1.png');

@@ -5,18 +5,27 @@ import { updateCharacter, updatePose, updatePosition, updateState, updateTalking
 
 export const socket = io(CONFIG.SOCKET_URL);
 
-export function setupSocketEvents() {
+export function setupSocketEvents(userData) {
   socket.on("connect", () => {
-    console.log("Connected to server");
+    console.log(`Connected as ${userData.login}`);
+    socket.emit('authenticate', {
+      userId: userData.id,
+      username: userData.login
+    });
+  });
+
+  socket.on('auth-success', () => {
+    console.log('Authentication successful');
+  });
+
+  socket.on('auth-failed', () => {
+    console.log('Authentication failed - not whitelisted');
+    // Optionally disable controls here
   });
 
   socket.on("connect_error", (err) => {
     console.error("Connection failed:", err);
   });
-
-  // socket.on("update-gif", (gifPath) => {
-  //   updateState(gifPath);
-  // });
 
   socket.on("update-state", (state) => {
     if (state != currentState) {
