@@ -20,7 +20,6 @@ export function setupSocketEvents(userData) {
 
   socket.on('auth-failed', () => {
     console.log('Authentication failed - not whitelisted');
-    // Optionally disable controls here
   });
 
   socket.on("connect_error", (err) => {
