@@ -1,18 +1,12 @@
 # Medical Drama OBS Tool
 
-## Installation
-
-### Clone the repository
+## Install + Run
 
 ```bash
 git clone https://github.com/michael-mehr/medical-drama
 cd medical-drama
-```
-
-### Install npm packages
-
-```bash
 npm i
+npm run dev
 ```
 
 ### Create a `/.env` and fill in these values
@@ -22,16 +16,11 @@ TWITCH_CLIENT_ID=
 TWITCH_CLIENT_SECRET=
 TWITCH_CALLBACK_URL=
 SESSION_SECRET=
-LOCAL_URL=http://localhost:5173
-REMOTE_URL=
-SOCKET_URL=
+CLIENT_URL=
+VITE_SERVER_URL=
 ```
 
-### Run client development environment
-
-```bash
-npm run dev
-```
+**Note**: *`VITE_SERVER_URL` must start with `VITE_` to be exposed to client code*
 
 ### Minify frontend code for production into `/dist/`
 
@@ -49,6 +38,7 @@ node server/medical-drama-server.js
 
 ### Doing
 
+- [ ] Resize sprites to fit frame height
 
 ### Soon
 
@@ -93,3 +83,5 @@ node server/medical-drama-server.js
 - [X] Remote client hosting
 - [X] Twitch Auth
 - [X] Update UI
+- [X] Only whitelisted users can update state
+- [X] `obs.html` page
