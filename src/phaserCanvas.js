@@ -26,7 +26,7 @@ export function startPhaser() {
     render: {
       pixelArt: true,
     },
-    // transparent: true,
+    transparent: true,
   };
   return new Phaser.Game(config);
 }
