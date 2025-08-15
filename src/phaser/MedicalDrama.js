@@ -1,13 +1,30 @@
-import { Phaser } from 'phaser';
+import Phaser from 'phaser';
+// import User from "./User";
+import { currentState } from '../state';
+import { Assets } from './Assets';
 
-class MedicalDrama extends Phaser.Scene {
+export default class MedicalDrama extends Phaser.Scene {
   constructor() {
-    super({ key: 'MedicalDrama'});
+    super({ key: "MedicalDrama" });
+    this.user = null;
   }
-  
+
   preload() {
-    // this.load.image('mozie', 'characters/mozie/A/1.gif')
-    this.load.spritesheet('mozie', 'characters/mozie/A/2.png', {
+    // this.load.json('assets', './Assets.json');
+    // const assets = this.cache.json.get('assets');
+    // const assets = Assets.assets;
+    // console.log(assets);
+    // for (const asset in assets.characters) {
+    //   if (asset.spritesheet !== undefined){
+    //     console.log(asset);
+    //     this.load.spritesheet(asset.key, asset.spritesheet, asset.frameConfig);
+    //   } else if (asset.images) {
+    //     for (const image in asset.images) {
+    //       this.load.image(image.key, image.path);
+    //     }
+    //   }
+    // }
+    this.load.spritesheet('mozie', 'characters/mozie/A/mozie_strip5.png', {
       frameWidth: 300,
       frameHeight: 300
     });
@@ -20,49 +37,102 @@ class MedicalDrama extends Phaser.Scene {
     this.load.image('myersB', 'characters/myers/B/1.png');
     this.load.image('myersC', 'characters/myers/C/1.png');
   }
-  
+
   create() {
+    this.createAnimations();
+    this.user = this.physics.add.sprite(450, 150, 'inari');
+    this.physics.add.existing(this.user);
+  }
+
+  update() {
+    this.user.update();
+    this.checkCharacter();
+    this.checkPosition();
+    this.checkTalking();
+    this.checkExpression();
+  }
+
+  createAnimations() {
     this.anims.create({
-      key: 'talking',
+      key: 'mozie-talking',
       frames: this.anims.generateFrameNumbers('mozie', { start: 0, end: 4 }),
       frameRate: 8,
       repeat: -1
     });
-  
-    user = this.physics.add.sprite(START_X, spriteY, 'mozie');
-    // user.play("talking");
-    // user.setCollideWorldBounds(true);
+    this.anims.create({
+      key: 'inari-talking',
+      frames: this.anims.generateFrameNumbers('inari', { start: 0, end: 3 }),
+      frameRate: 8,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'inari-shocked',
+      frames: this.anims.generateFrameNumbers('inari', { start: 4, end: 7 }),
+      frameRate: 8,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'inari-angry',
+      frames: this.anims.generateFrameNumbers('inari', { start: 8, end: 11 }),
+      frameRate: 8,
+      repeat: -1
+    });
   }
-  
-  update() {
+
+  checkCharacter() {
     if (currentState.character === 'forrest') {
-      user.setTexture('forrest');
-    } else if (currentState.character === 'mozie' && user.texture.key !== 'mozie-talking') {
-      user.setTexture('mozie');
-      user.play('talking', true);
+      this.user.setTexture('forrest');
+    } else if (currentState.character === 'mozie' && this.user.texture.key !== 'mozie') {
+      this.user.setTexture('mozie');
+      this.user.play('mozie-talking', true);
+    } else if (currentState.character === 'inari' && this.user.texture.key !== 'inari') {
+      this.user.setTexture('inari');
+      this.user.play('inari-talking', true);
     } else if (currentState.character === 'myers') {
-      user.setTexture('myersA');
-    } else if (currentState.character === 'inari') {
-      user.setTexture('inari');
+      this.user.setTexture('myersA');
     }
-  
+  }
+
+  checkPosition() {
     if (currentState.position === 'left') {
-      this.physics.moveTo(user, leftX, spriteY, 2000, 100);
+      this.physics.moveTo(this.user, 150, 150, 2000, 100);
     } else if (currentState.position === 'up') {
-      this.physics.moveTo(user, centerX, spriteY, 2000, 100);
+      this.physics.moveTo(this.user, 450, 150, 2000, 100);
     } else if (currentState.position === 'right') {
-      this.physics.moveTo(user, rightX, spriteY, 2000, 100);
+      this.physics.moveTo(this.user, 750, 150, 2000, 100);
     }
-  
-    if (currentState.talking === true && user.anims.isPaused) {
+  }
+
+  checkTalking() {
+    if (currentState.talking === true && this.user.anims.isPaused) {
       if (currentState.character === 'mozie'){
-        user.play('talking', true);
+        this.user.play('mozie-talking', true);
+      } else if (currentState.character === 'inari') {
+        this.user.play('inari-talking', true);
       }
       console.log(currentState);
-    } else if (currentState.talking === false && !user.anims.isPaused) {
-      user.anims.pause();
-      user.setFrame(0);
+    } else if (currentState.talking === false && !this.user.anims.isPaused) {
+      this.user.anims.pause();
+      this.user.setFrame(0);
     }
-  
+  }
+
+  checkExpression() {
+    if (currentState.character === 'inari') {
+      switch (currentState.expression) {
+        case 'A':
+          this.user.play('inari-talking', true);
+          break;
+        case 'B':
+          this.user.play('inari-shocked', true);
+          break;
+        case 'C':
+          this.user.play('inari-angry', true);
+          break;
+        default:
+          this.user.play('inari-talking', true);
+          break;
+      }
+    }
   }
 }
